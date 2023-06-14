@@ -31,7 +31,12 @@ jobs:
         with:
           name: TrChat Artifacts
           path: build/libs/
-      - uses: actions/upload-artifact@v3
+      - name: automatic releases
+        uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          name: my-artifact
-          path: plugins/build/libs/
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "TrChat 自动构建最新版本"
+          files: |
+            plugin/build/libs/*.*
